@@ -69,6 +69,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
             {
                 NewPlanetLoadSpawner.Instance.SpawnItem(itemInTerminal[0]);
                 itemInTerminal.RemoveAt(0);
+                currentCreationTime = 0;
             }
             if(itemInTerminal.Count > 0)
                 creationBar.value = currentCreationTime / itemInTerminal[0].GetSendingTime();
