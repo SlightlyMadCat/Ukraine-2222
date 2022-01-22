@@ -21,7 +21,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
 
     [SerializeField] private int terminalType;
 
-    [SerializeField] private Slider creationBar;
+    [SerializeField] private Transform loadingBar;
 
     private bool isSendLoadIsStarted = false;
 
@@ -59,7 +59,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     {
         if (itemInTerminal.Count == 0) // empty item list
         {
-            creationBar.value = 0;
+            loadingBar.localScale = new Vector3(0, loadingBar.localScale.y) ;
             currentCreationTime = 0;
         }
         else
@@ -72,7 +72,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
                 currentCreationTime = 0;
             }
             if(itemInTerminal.Count > 0)
-                creationBar.value = currentCreationTime / itemInTerminal[0].GetSendingTime();
+                loadingBar.localScale = new Vector3(currentCreationTime / itemInTerminal[0].GetSendingTime(), loadingBar.localScale.y) ;
         }
     }
 }
