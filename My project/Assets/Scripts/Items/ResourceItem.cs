@@ -19,9 +19,8 @@ public abstract class ResourceItem : MonoBehaviour
     private SpaceSide spaceSide;
 
     private RectTransform myRect;
-
-    private bool isInTerminal;
-
+    private bool isInTerminal; // loading to right planet
+    [SerializeField] private float standardItemSendingTime = 2f; // seconds
     private void Awake()
     {
         myRect = gameObject.GetComponent<RectTransform>();
@@ -120,5 +119,10 @@ public abstract class ResourceItem : MonoBehaviour
     public int GetResourceID()
     {
         return resourceId;
+    }
+
+    public float GetSendingTime()
+    {
+        return standardItemSendingTime;
     }
 }
