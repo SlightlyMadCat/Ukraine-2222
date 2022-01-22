@@ -60,15 +60,15 @@ public abstract class ResourceItem : MonoBehaviour
 
     public void Init(Vector3 _startPos, Transform _defaultPlanet, SpaceSide _spaceSide)
     {
+        spaceSide = _spaceSide;
         transform.position = _startPos;
         defaultPlanet = _defaultPlanet;
-        spaceSide = _spaceSide;
     }
     
     public void SetMoveTarget(Transform _target)
     {
-        Debug.LogError(_target);
         moveTarget = _target;
+       // Debug.LogError("set move target " + _target.gameObject.name);
     }
 
     //called to start item falling
@@ -110,5 +110,15 @@ public abstract class ResourceItem : MonoBehaviour
     private bool GetIsInTerminal()
     {
         return isInTerminal;
+    }
+
+    public void SetParent(Transform parent)
+    {
+        gameObject.transform.SetParent(parent);
+    }
+
+    public int GetResourceID()
+    {
+        return resourceId;
     }
 }

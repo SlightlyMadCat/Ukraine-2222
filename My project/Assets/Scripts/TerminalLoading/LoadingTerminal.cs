@@ -44,5 +44,6 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     {
         yield return new WaitForSeconds(0.3f);
         _resourceItem.SetStateGameobject(false);
+        NewPlanetLoadSpawner.Instance.SpawnItem(_resourceItem);
     }
 }
