@@ -12,27 +12,27 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 {
     private RectTransform rectTr;
     private Canvas canvas;
-    //private CanvasGroup canvasGroup;
+    private CanvasGroup canvasGroup;
     private ResourceItem item;
     
     public void Init(Canvas _canvas)
     {
         rectTr = GetComponent<RectTransform>();
         canvas = _canvas;
-        //canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup = GetComponent<CanvasGroup>();
         item = GetComponent<ResourceItem>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //canvasGroup.blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
         item.SetMoveTarget(null);
         item.ResetSpeed();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = true;
         item.ResetToDefaultTarget();
     }
 
