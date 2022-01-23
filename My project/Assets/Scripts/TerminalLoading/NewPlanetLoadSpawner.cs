@@ -15,6 +15,7 @@ public class NewPlanetLoadSpawner : MonoBehaviour
     [SerializeField] private RectTransform rightPlanet;
     [SerializeField] private int _lastUsedTerminal = -1;
     [SerializeField] private SpaceSide spaceSide;
+    
     private void Awake()
     {
         Instance = this;
@@ -30,6 +31,7 @@ public class NewPlanetLoadSpawner : MonoBehaviour
         _item.Init(_terminal.GetTerminalPosition(), rightPlanet, spaceSide);
         _item.SetInTerminal(false);
         _item.SetMoveTarget(_terminal.GetRandomMovePosition());
+        _item.ResetToMaxSpeed();
         _item.SetStateGameobject(true);
     }
 

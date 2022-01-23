@@ -28,7 +28,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     // detect cargo
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.LogError("On drop " + eventData.pointerDrag.gameObject.name);
+        //Debug.LogError("On drop " + eventData.pointerDrag.gameObject.name);
         if (eventData.pointerDrag != null)
         {
             var resourceItem = eventData.pointerDrag.GetComponent<ResourceItem>();

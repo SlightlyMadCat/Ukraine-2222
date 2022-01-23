@@ -12,17 +12,22 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private string itemName;
     [SerializeField] private int resourceId;
     [SerializeField] private float moveSpeed;
+    private float maxSpeed;
     private float minimalSpeed = .15f;
     
     private Transform moveTarget;
     [SerializeField] private Transform defaultPlanet;   //planet to fall into
     private SpaceSide spaceSide;
+    private DragDrop dragDrop;
 
     private RectTransform myRect;
     private bool isInTerminal; // loading to right planet
     [SerializeField] private float standardItemSendingTime = 2f; // seconds
+    
     private void Awake()
     {
+        maxSpeed = moveSpeed;
+        dragDrop = GetComponent<DragDrop>();
         myRect = gameObject.GetComponent<RectTransform>();
     }
 
@@ -30,7 +35,8 @@ public abstract class ResourceItem : MonoBehaviour
     {
         if(!spaceSide.IsInsideArea(transform))  //check bounds
             DestroyObject();
-        
+     
+        if(dragDrop.IsTouched()) return;
         if(moveTarget == null) return;
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, moveTarget.localPosition, moveSpeed);
 
@@ -67,7 +73,6 @@ public abstract class ResourceItem : MonoBehaviour
     public void SetMoveTarget(Transform _target)
     {
         moveTarget = _target;
-       // Debug.LogError("set move target " + _target.gameObject.name);
     }
 
     //called to start item falling
@@ -77,9 +82,14 @@ public abstract class ResourceItem : MonoBehaviour
         SetMoveTarget(defaultPlanet);
     }
 
-    public void ResetSpeed()
+    public void ResetToMinSpeed()
     {
         moveSpeed = minimalSpeed;
+    }
+
+    public void ResetToMaxSpeed()
+    {
+        moveSpeed = maxSpeed;
     }
 
     public void DestroyObject()

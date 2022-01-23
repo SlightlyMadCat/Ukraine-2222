@@ -8,12 +8,13 @@ using UnityEngine.EventSystems;
  * Drag items logic
  */
 
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerUpHandler
 {
     private RectTransform rectTr;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
     private ResourceItem item;
+    private bool isTouched;
     
     public void Init(Canvas _canvas)
     {
@@ -27,7 +28,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         canvasGroup.blocksRaycasts = false;
         item.SetMoveTarget(null);
-        item.ResetSpeed();
+        item.ResetToMinSpeed();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -40,9 +41,19 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         rectTr.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
+
+    public bool IsTouched()
+    {
+        return isTouched;
+    }
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        //throw new System.NotImplementedException();
+        isTouched = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isTouched = false;
     }
 }
