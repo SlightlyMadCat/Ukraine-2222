@@ -55,7 +55,8 @@ public class EconomyController : MonoBehaviour
     }
     [SerializeField] private List<ResourceSample> resourceSamples = new List<ResourceSample>();
     [SerializeField] private TextMeshProUGUI moneyText;
-
+    public GameObject moneyPrefab;
+    
     private void Start()
     {
         ChangeMoneyCount(0);
@@ -83,6 +84,6 @@ public class EconomyController : MonoBehaviour
     public void ChangeMoneyCount(float _val)
     {
         currentMoney += _val;
-        moneyText.text = currentMoney.ToString();
+        moneyText.text = currentMoney.ToString("F2");
     }
 }

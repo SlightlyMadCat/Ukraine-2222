@@ -856,6 +856,14 @@ PrefabInstance:
       value: FinishFactory 1
       objectReference: {fileID: 0}
     - target: {fileID: 2354551594160695266, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
+      propertyPath: baseParent
+      value: 
+      objectReference: {fileID: 989673819}
+    - target: {fileID: 2354551594160695266, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
+      propertyPath: spawnRange
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354551594160695266, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
       propertyPath: itemIDForFactory
       value: 1
       objectReference: {fileID: 0}
@@ -2021,6 +2029,7 @@ MonoBehaviour:
     deltaPerTime: 0.001
     amountSlider: {fileID: 2012990363}
   moneyText: {fileID: 286373696}
+  moneyPrefab: {fileID: 5137840172662209349, guid: 89a8f2a3b860cfc4e88bbb031de399a5, type: 3}
 --- !u!1 &1572205275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,6 +2707,14 @@ PrefabInstance:
     - target: {fileID: 2354551594160695264, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
       propertyPath: m_Name
       value: FinishFactory 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354551594160695266, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
+      propertyPath: baseParent
+      value: 
+      objectReference: {fileID: 989673819}
+    - target: {fileID: 2354551594160695266, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
+      propertyPath: spawnRange
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2354551594160695267, guid: fb848e42a33fae649bd04b0226a11cc0, type: 3}
       propertyPath: m_Pivot.x
