@@ -94,6 +94,10 @@ MonoBehaviour:
   resourceId: 0
   moveSpeed: 3
   defaultPlanet: {fileID: 0}
+  standardItemSendingTime: 2
+  resAmountOnItem: 0.25
+  buildCurrency: 100
+  image: {fileID: 2290094567269460966}
 --- !u!114 &1843062154909614838
 MonoBehaviour:
   m_ObjectHideFlags: 0

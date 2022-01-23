@@ -505,6 +505,7 @@ MonoBehaviour:
   mainCanvas: {fileID: 0}
   spaceSide: {fileID: 0}
   creationBar: {fileID: 8837616942643031360}
+  image: {fileID: 8837616942691154584}
 --- !u!1 &8837616943308043902
 GameObject:
   m_ObjectHideFlags: 0

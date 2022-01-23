@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class FinishFactory : MonoBehaviour, IDropHandler
 {
@@ -9,6 +10,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
     [SerializeField] private float spawnRange = 10;
     [SerializeField] private Transform baseParent;  //parent to money prefs
     
+    [SerializeField] private Image image;
     // detect cargo
     public void OnDrop(PointerEventData eventData)
     {
@@ -22,6 +24,13 @@ public class FinishFactory : MonoBehaviour, IDropHandler
 
                 SpawnMoneyPrefab();
             }
+            else
+            {
+                resourceItem.DestroyObject();
+                Debug.LogError("bad item type");
+            }
+
+            GameController.Instance.Recalculate();
         }
     }
 
@@ -36,5 +45,12 @@ public class FinishFactory : MonoBehaviour, IDropHandler
         _money.transform.localPosition = transform.localPosition + _randomOffset;
         _money.transform.SetParent(baseParent);
         Debug.LogError("money++");        
+    }
+
+    // set item type for finish panel
+    public void SetItemType(int _type)
+    {
+        itemIDForFactory = _type;
+        image.color =  ItemDataBase.Instance.GetColorByItemID(_type);
     }
 }

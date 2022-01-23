@@ -26,6 +26,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
 
     private bool isSendLoadIsStarted = false;
 
+    [SerializeField] private Image image;
     [Serializable]
     public class ItemInTerminalSample
     {
@@ -104,8 +105,9 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
         }
     }
 
-    public void SetTerminalTime(int type)
+    public void SetTerminalType(int type)
     {
         terminalType = type;
+        image.color = ItemDataBase.Instance.GetColorByItemID(type);
     }
 }

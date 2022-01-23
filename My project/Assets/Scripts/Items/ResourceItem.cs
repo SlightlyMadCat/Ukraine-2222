@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * Base draggable item logic
@@ -25,6 +26,7 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private float standardItemSendingTime = 2f; // seconds
     [SerializeField] private float resAmountOnItem = .25f;
     [SerializeField] private float buildCurrency = 100;
+    [SerializeField] private Image image;
     
     private void Awake()
     {
@@ -146,5 +148,10 @@ public abstract class ResourceItem : MonoBehaviour
     public float GetBuildCurrency()
     {
         return buildCurrency;
+    }
+
+    public Image GetImage()
+    {
+        return image;
     }
 }
