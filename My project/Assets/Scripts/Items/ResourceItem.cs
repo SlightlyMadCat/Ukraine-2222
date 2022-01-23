@@ -17,7 +17,15 @@ public abstract class ResourceItem : MonoBehaviour
     private Transform moveTarget;
     [SerializeField] private Transform defaultPlanet;   //planet to fall into
     private SpaceSide spaceSide;
-    
+
+    private RectTransform myRect;
+    private bool isInTerminal; // loading to right planet
+    [SerializeField] private float standardItemSendingTime = 2f; // seconds
+    private void Awake()
+    {
+        myRect = gameObject.GetComponent<RectTransform>();
+    }
+
     private void FixedUpdate()
     {
         if(!spaceSide.IsInsideArea(transform))  //check bounds
@@ -51,20 +59,22 @@ public abstract class ResourceItem : MonoBehaviour
 
     public void Init(Vector3 _startPos, Transform _defaultPlanet, SpaceSide _spaceSide)
     {
+        spaceSide = _spaceSide;
         transform.position = _startPos;
         defaultPlanet = _defaultPlanet;
-        spaceSide = _spaceSide;
     }
     
     public void SetMoveTarget(Transform _target)
     {
         moveTarget = _target;
+       // Debug.LogError("set move target " + _target.gameObject.name);
     }
 
     //called to start item falling
     public void ResetToDefaultTarget()
     {
-        moveTarget = defaultPlanet;
+        if(GetIsInTerminal()) return;
+        SetMoveTarget(defaultPlanet);
     }
 
     public void ResetSpeed()
@@ -76,5 +86,43 @@ public abstract class ResourceItem : MonoBehaviour
     {
         //here may be destroying effect
         Destroy(gameObject);
+    }
+
+    // Get rect transform
+    public void SetRectPosition (Vector3 _newPos)
+    {
+        myRect.position = _newPos;
+    }
+
+    //enable/disable item on scene
+    public void SetStateGameobject(bool _val)
+    {
+        gameObject.SetActive(_val);
+    }
+
+    // set state cargo in terminal or not
+    public void SetInTerminal(bool _val)
+    {
+        isInTerminal = _val;
+    }
+
+    private bool GetIsInTerminal()
+    {
+        return isInTerminal;
+    }
+
+    public void SetParent(Transform parent)
+    {
+        gameObject.transform.SetParent(parent);
+    }
+
+    public int GetResourceID()
+    {
+        return resourceId;
+    }
+
+    public float GetSendingTime()
+    {
+        return standardItemSendingTime;
     }
 }
