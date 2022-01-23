@@ -23,6 +23,8 @@ public abstract class ResourceItem : MonoBehaviour
     private RectTransform myRect;
     private bool isInTerminal; // loading to right planet
     [SerializeField] private float standardItemSendingTime = 2f; // seconds
+    [SerializeField] private float resAmountOnItem = .25f;
+    [SerializeField] private float buildCurrency = 100;
     
     private void Awake()
     {
@@ -134,5 +136,15 @@ public abstract class ResourceItem : MonoBehaviour
     public float GetSendingTime()
     {
         return standardItemSendingTime;
+    }
+
+    public float GetResAmount()
+    {
+        return resAmountOnItem;
+    }
+
+    public float GetBuildCurrency()
+    {
+        return buildCurrency;
     }
 }

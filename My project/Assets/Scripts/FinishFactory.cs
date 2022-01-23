@@ -15,10 +15,10 @@ public class FinishFactory : MonoBehaviour, IDropHandler
             var resourceItem = eventData.pointerDrag.GetComponent<ResourceItem>();
             if (resourceItem.GetResourceID() == itemIDForFactory)
             {
+                EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount());
                 resourceItem.DestroyObject();
                 Debug.LogError("money++");
             }
-               
         }
     }
 }

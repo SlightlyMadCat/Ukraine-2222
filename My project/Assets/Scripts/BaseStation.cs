@@ -47,6 +47,13 @@ public class BaseStation : MonoBehaviour
 
     public void StartSpawnProcess()
     {
+        if(!EconomyController.Instance.CanSpawnItem(itemToSpawn.GetBuildCurrency())) return;
+        else
+        {
+            //reduce money count
+            EconomyController.Instance.ChangeMoneyCount(-itemToSpawn.GetBuildCurrency());
+        }
+        
         itemsToSpawn.Add(0);
     }
     
