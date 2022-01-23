@@ -17,14 +17,38 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     private float transportSpeed = 3f; // speed in seconds 
 
     [Header("List of item in this terminal")] [SerializeField]
-    private List<ResourceItem> itemInTerminal = new List<ResourceItem>(); // all item it this terminal
+    private List<ItemInTerminalSample> itemInTerminal = new List<ItemInTerminalSample>(); // all item it this terminal
 
     [SerializeField] private int terminalType;
+    [SerializeField] private float terminalBonusTime = 1f;
 
     [SerializeField] private Transform loadingBar;
 
     private bool isSendLoadIsStarted = false;
 
+    [Serializable]
+    public class ItemInTerminalSample
+    {
+       [SerializeField] private int currentItemSlot; // current type of item for this slot
+       [SerializeField] private ResourceItem resourceItem;
+
+       public ItemInTerminalSample(int currentItemSlot, ResourceItem resourceItem)
+       {
+           this.currentItemSlot = currentItemSlot;
+           this.resourceItem = resourceItem;
+       }
+
+       public int GetItemSlot()
+       {
+           return currentItemSlot;
+       }
+       
+       public ResourceItem GetResourceItem()
+       {
+           return resourceItem;
+       }
+    }
+    
     // detect cargo
     public void OnDrop(PointerEventData eventData)
     {
@@ -39,19 +63,19 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     // add new load in terminal
     private void AddNewItem(ResourceItem _resourceItem)
     {
-        if (itemInTerminal.Contains(_resourceItem)) return;
+        var itemTerminalSample = new ItemInTerminalSample(terminalType, _resourceItem);
         _resourceItem.SetInTerminal(true);
         _resourceItem.SetMoveTarget(null);
         _resourceItem.SetRectPosition(itemSlot.position);
-        StartCoroutine(DisableItemAndTryToSend(_resourceItem));
+        StartCoroutine(DisableItemAndTryToSend(itemTerminalSample));
     }
 
     // try send load to next planet    
-    IEnumerator DisableItemAndTryToSend(ResourceItem _resourceItem)
+    IEnumerator DisableItemAndTryToSend(ItemInTerminalSample _terminalItem)
     {
         yield return new WaitForSeconds(0.3f);
-        itemInTerminal.Add(_resourceItem);
-        _resourceItem.SetStateGameobject(false);
+        itemInTerminal.Add(_terminalItem);
+        _terminalItem.GetResourceItem().SetStateGameobject(false);
     }
 
     private float currentCreationTime = 0;
@@ -65,14 +89,23 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
         else
         {
             currentCreationTime += Time.fixedDeltaTime;
-            if (currentCreationTime >= itemInTerminal[0].GetSendingTime())
+            var sendingTime = itemInTerminal[0].GetResourceItem().GetSendingTime();
+            if (itemInTerminal[0].GetResourceItem().GetResourceID() == itemInTerminal[0].GetItemSlot()) // apply sending boost 
+                sendingTime -= terminalBonusTime;
+            
+            if (currentCreationTime >= sendingTime) // timer
             {
-                NewPlanetLoadSpawner.Instance.SpawnItem(itemInTerminal[0]);
+                NewPlanetLoadSpawner.Instance.SpawnItem(itemInTerminal[0].GetResourceItem()); // spawn item on right planet
                 itemInTerminal.RemoveAt(0);
                 currentCreationTime = 0;
             }
             if(itemInTerminal.Count > 0)
-                loadingBar.localScale = new Vector3(currentCreationTime / itemInTerminal[0].GetSendingTime(), loadingBar.localScale.y) ;
+                loadingBar.localScale = new Vector3(currentCreationTime / sendingTime, loadingBar.localScale.y) ;
         }
+    }
+
+    public void SetTerminalTime(int type)
+    {
+        terminalType = type;
     }
 }
