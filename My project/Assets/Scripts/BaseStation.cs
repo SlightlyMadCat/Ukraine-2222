@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class BaseStation : MonoBehaviour
 {
     [SerializeField] private ResourceItem itemToSpawn;
@@ -19,6 +20,7 @@ public class BaseStation : MonoBehaviour
     private float itemCreationTime = 1f;
     private float currentCreationTime = 0;
     [SerializeField] private Slider creationBar;
+    [SerializeField] private Image image; 
     
     private void Awake()
     {

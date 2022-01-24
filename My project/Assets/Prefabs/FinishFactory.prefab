@@ -89,3 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIDForFactory: 0
+  spawnRange: 10
+  baseParent: {fileID: 0}
+  image: {fileID: 2354551594160695277}
