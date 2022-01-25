@@ -50,10 +50,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnPointerDown(PointerEventData eventData)
     {
         isTouched = true;
+        ItemDataBase.Instance.SetDynamicItemsRaycastState(false, item);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isTouched = false;
+        ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
     }
 }

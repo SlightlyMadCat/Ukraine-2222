@@ -33,6 +33,8 @@ public abstract class ResourceItem : MonoBehaviour
         maxSpeed = moveSpeed;
         dragDrop = GetComponent<DragDrop>();
         myRect = gameObject.GetComponent<RectTransform>();
+        
+        ItemDataBase.Instance.AddSpawnedItem(this);
     }
 
     private void FixedUpdate()
@@ -99,6 +101,7 @@ public abstract class ResourceItem : MonoBehaviour
     public void DestroyObject()
     {
         //here may be destroying effect
+        ItemDataBase.Instance.RemoveSpawnedItem(this);
         Destroy(gameObject);
     }
 
@@ -153,5 +156,10 @@ public abstract class ResourceItem : MonoBehaviour
     public Image GetImage()
     {
         return image;
+    }
+
+    public void SetRaycastingState(bool _val)
+    {
+        image.raycastTarget = _val;
     }
 }
