@@ -65,5 +65,7 @@ public class BaseStation : MonoBehaviour
         _newItem.Init(transform.position, defaultPlanet, spaceSide);
         _newItem.SetMoveTarget(orbitCopy);
         _newItem.GetComponent<DragDrop>().Init(mainCanvas);
+        
+        SoundsManager.Instance.PlayCustomSoundByID(2);
     }
 }

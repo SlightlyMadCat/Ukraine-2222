@@ -23,6 +23,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
                 resourceItem.DestroyObject();
 
                 SpawnMoneyPrefab();
+                SoundsManager.Instance.PlayCustomSoundByID(2);
             }
             else
             {

@@ -69,6 +69,8 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
         _resourceItem.SetMoveTarget(null);
         _resourceItem.SetRectPosition(itemSlot.position);
         StartCoroutine(DisableItemAndTryToSend(itemTerminalSample));
+        
+        SoundsManager.Instance.PlayCustomSoundByID(0);
     }
 
     // try send load to next planet    
@@ -99,6 +101,8 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
                 NewPlanetLoadSpawner.Instance.SpawnItem(itemInTerminal[0].GetResourceItem()); // spawn item on right planet
                 itemInTerminal.RemoveAt(0);
                 currentCreationTime = 0;
+                
+                SoundsManager.Instance.PlayCustomSoundByID(1);
             }
             if(itemInTerminal.Count > 0)
                 loadingBar.localScale = new Vector3(currentCreationTime / sendingTime, loadingBar.localScale.y) ;
