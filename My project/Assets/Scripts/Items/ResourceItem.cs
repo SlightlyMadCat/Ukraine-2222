@@ -12,7 +12,7 @@ public abstract class ResourceItem : MonoBehaviour
 {
     [SerializeField] private string itemName;
     [SerializeField] private int resourceId;
-    [SerializeField] private float moveSpeed;
+    private float moveSpeed = 4f;
     private float maxSpeed;
     private float minimalSpeed = .15f;
     
@@ -46,11 +46,11 @@ public abstract class ResourceItem : MonoBehaviour
 
         if (moveTarget != defaultPlanet)    //speed reducing if item is moving from planet towards the orbit
         {
-            moveSpeed = moveSpeed - (moveSpeed * .00981f);
+            moveSpeed = moveSpeed - (moveSpeed * .02081f);
         }
         else //speed increasing if item is moving from orbit towards the planet
         {
-            moveSpeed = moveSpeed + (moveSpeed * .03981f);
+            moveSpeed = moveSpeed + (moveSpeed * .02581f);
         }
 
         if (moveSpeed < minimalSpeed)   //if target has low speed on the orbit - move item to the planet

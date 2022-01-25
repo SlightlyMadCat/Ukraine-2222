@@ -30,6 +30,7 @@ public class BaseStation : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
         orbitCopy.position = desireItemOrbitalPos.position;
 
         if (itemsToSpawn.Count > 0)

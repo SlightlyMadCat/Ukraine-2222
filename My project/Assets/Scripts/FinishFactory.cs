@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class FinishFactory : MonoBehaviour, IDropHandler
 {
@@ -53,5 +55,10 @@ public class FinishFactory : MonoBehaviour, IDropHandler
     {
         itemIDForFactory = _type;
         image.color =  ItemDataBase.Instance.GetColorByItemID(_type);
+    }
+
+    private void FixedUpdate()
+    {
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
     }
 }
