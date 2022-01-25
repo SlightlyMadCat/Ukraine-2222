@@ -112,6 +112,6 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     public void SetTerminalType(int type)
     {
         terminalType = type;
-        image.color = ItemDataBase.Instance.GetColorByItemID(type);
+        image.sprite = ItemDataBase.Instance.GetSpriteByItemID(type);
     }
 }
