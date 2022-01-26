@@ -58,4 +58,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         isTouched = false;
         ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
     }
+
+    private void OnDestroy()
+    {
+        ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
+    }
 }
