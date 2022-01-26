@@ -29,7 +29,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
             }
             else
             {
-                resourceItem.DestroyObject(false);
+                resourceItem.DestroyObject(true);
                 Debug.LogError("bad item type");
             }
 
