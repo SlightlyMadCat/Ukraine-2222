@@ -15,18 +15,18 @@ public class ItemDataBase : MonoBehaviour
         Instance = this;
     }
 
-    public Color32 GetColorByItemID(int ID)
+    public Sprite GetSpriteByItemID(int ID)
     {
-        Color32 _color = Color.white;
+        Sprite _sprite =null;
         foreach (var item in resourceItems)
         {
             if (item.GetResourceID() == ID)
             {
-                _color = item.GetImage().color;
+                _sprite = item.GetImage().sprite;
                 break;
             }
         }
-        return _color;
+        return _sprite;
     }
 
     public void AddSpawnedItem(ResourceItem _item)

@@ -54,7 +54,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
     public void SetItemType(int _type)
     {
         itemIDForFactory = _type;
-        image.color =  ItemDataBase.Instance.GetColorByItemID(_type);
+        image.sprite =  ItemDataBase.Instance.GetSpriteByItemID(_type);
     }
 
     private void FixedUpdate()
