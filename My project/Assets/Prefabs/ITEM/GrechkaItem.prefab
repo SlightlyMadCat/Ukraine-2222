@@ -98,6 +98,7 @@ MonoBehaviour:
   resAmountOnItem: 0.25
   buildCurrency: 100
   image: {fileID: 2290094567269460966}
+  side: 0
 --- !u!114 &1843062154909614838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ TrailRenderer:
   m_Time: 0.25
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:

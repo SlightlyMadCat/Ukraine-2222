@@ -33,6 +33,8 @@ public class NewPlanetLoadSpawner : MonoBehaviour
         _item.SetMoveTarget(_terminal.GetRandomMovePosition());
         _item.ResetToMaxSpeed();
         _item.SetStateGameobject(true);
+        
+        VfxSpawner.Instance.SpawnVfx(1, _terminal.GetTerminalPosition());
     }
 
     // get terminal for cargo
