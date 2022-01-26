@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
     
     private void MixLoadingTerminals()
     {
-        List<int> availableID =CreateItemListCopy();
+        List<int> availableID = CreateItemListCopy();
         foreach (var factory in finishFactories)
         {
             int _factoryID = -1;
@@ -86,6 +86,42 @@ public class GameController : MonoBehaviour
                 _factoryID = itemIDInGame[listNumber];
             }
             factory.SetItemType(_factoryID);
+        }
+    }
+
+    public void ChangeAttachedFinishFactoryScale(bool _val, int _id, SpaceSide.Side _side)
+    {
+        if (_side == SpaceSide.Side.left)
+        {
+            //left planet area
+            foreach (var VARIABLE in loadingTerminals)
+            {
+                if (VARIABLE.GetTerminalType() == _id)
+                {
+                    float _scale = 1;
+
+                    Debug.Log(VARIABLE.name);
+                    if (_val) _scale = 1.25f;
+                    VARIABLE.SetFactoryScale(new Vector3(_scale, _scale, _scale));
+                    break;
+                }
+            }
+        }
+        else
+        {
+            //right planet area
+            foreach (var VARIABLE in finishFactories)
+            {
+                if (VARIABLE.GetAttachedItemId() == _id)
+                {
+                    float _scale = 1;
+
+                    Debug.Log(VARIABLE.name);
+                    if (_val) _scale = 1.25f;
+                    VARIABLE.SetFactoryScale(new Vector3(_scale, _scale, _scale));
+                    break;
+                }
+            }
         }
     }
 }

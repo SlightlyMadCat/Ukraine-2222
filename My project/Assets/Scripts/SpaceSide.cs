@@ -11,6 +11,12 @@ public class SpaceSide : MonoBehaviour
     [SerializeField] private string name;
     [SerializeField] private Transform[] spaceCorners;  //left top + right bottom
 
+    public enum Side
+    {
+        left, right
+    }
+    public Side side;
+    
     public bool IsInsideArea(Transform _item)
     {
         if (_item.localPosition.x > spaceCorners[0].localPosition.x &&

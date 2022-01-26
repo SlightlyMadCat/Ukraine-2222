@@ -5923,8 +5923,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_SizeDelta: {x: 0, y: 0.00048828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632815146
 MonoBehaviour:
@@ -6707,6 +6707,7 @@ MonoBehaviour:
   spaceCorners:
   - {fileID: 440234797}
   - {fileID: 902394117}
+  side: 1
 --- !u!1 &1039082805
 GameObject:
   m_ObjectHideFlags: 0
@@ -6959,6 +6960,9 @@ MonoBehaviour:
     desireMixer: {fileID: 24300002, guid: 3106ee9fa256d904fb58252ff0372535, type: 2}
   - name: pop
     clip: {fileID: 8300000, guid: c99e06a07ed4d154384852c83f9fd383, type: 3}
+    desireMixer: {fileID: 24300002, guid: 3106ee9fa256d904fb58252ff0372535, type: 2}
+  - name: explosion
+    clip: {fileID: 8300000, guid: 8759a1d553b3a414993c164818ac5c8b, type: 3}
     desireMixer: {fileID: 24300002, guid: 3106ee9fa256d904fb58252ff0372535, type: 2}
 --- !u!4 &1065054884
 Transform:
@@ -8529,6 +8533,7 @@ MonoBehaviour:
   spaceCorners:
   - {fileID: 1572205276}
   - {fileID: 1068367477}
+  side: 0
 --- !u!1 &1700625096
 GameObject:
   m_ObjectHideFlags: 0
@@ -8765,6 +8770,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1681533071}
     m_Modifications:
+    - target: {fileID: 2898288100395740986, guid: 0e33448458649dc44830b72e3a3bee08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20.723022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898288100395740986, guid: 0e33448458649dc44830b72e3a3bee08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.469818
+      objectReference: {fileID: 0}
     - target: {fileID: 3230986307687888026, guid: 0e33448458649dc44830b72e3a3bee08, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

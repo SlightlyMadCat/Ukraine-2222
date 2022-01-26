@@ -61,4 +61,14 @@ public class FinishFactory : MonoBehaviour, IDropHandler
     {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
     }
+
+    public int GetAttachedItemId()
+    {
+        return itemIDForFactory;
+    }
+
+    public void SetFactoryScale(Vector3 _scale)
+    {
+        transform.localScale = _scale;
+    }
 }

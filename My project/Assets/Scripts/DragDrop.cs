@@ -51,16 +51,23 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         isTouched = true;
         ItemDataBase.Instance.SetDynamicItemsRaycastState(false, item);
+        GameController.Instance.ChangeAttachedFinishFactoryScale(true, item.GetResourceID(), item.side);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         isTouched = false;
-        ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
+        OnDeselection();
     }
 
     private void OnDestroy()
     {
+        OnDeselection();
+    }
+
+    private void OnDeselection()
+    {
+        GameController.Instance.ChangeAttachedFinishFactoryScale(false, item.GetResourceID(), item.side);
         ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
     }
 }

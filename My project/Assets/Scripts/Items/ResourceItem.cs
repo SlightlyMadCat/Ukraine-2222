@@ -28,6 +28,8 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private float buildCurrency = 100;
     [SerializeField] private Image image;
 
+    [HideInInspector] public SpaceSide.Side side;
+    
     private void Awake()
     {
         maxSpeed = moveSpeed;
@@ -74,6 +76,7 @@ public abstract class ResourceItem : MonoBehaviour
         spaceSide = _spaceSide;
         transform.position = _startPos;
         defaultPlanet = _defaultPlanet;
+        side = _spaceSide.side;
     }
     
     public void SetMoveTarget(Transform _target)

@@ -114,4 +114,14 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
         terminalType = type;
         image.sprite = ItemDataBase.Instance.GetSpriteByItemID(type);
     }
+
+    public int GetTerminalType()
+    {
+        return terminalType;
+    }
+    
+    public void SetFactoryScale(Vector3 _scale)
+    {
+        transform.localScale = _scale;
+    }
 }
