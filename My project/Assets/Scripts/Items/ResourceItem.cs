@@ -27,7 +27,7 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private float resAmountOnItem = .25f;
     [SerializeField] private float buildCurrency = 100;
     [SerializeField] private Image image;
-    
+
     private void Awake()
     {
         maxSpeed = moveSpeed;
@@ -40,7 +40,7 @@ public abstract class ResourceItem : MonoBehaviour
     private void FixedUpdate()
     {
         if(!spaceSide.IsInsideArea(transform))  //check bounds
-            DestroyObject();
+            DestroyObject(true);
      
         if(dragDrop.IsTouched()) return;
         if(moveTarget == null) return;
@@ -64,7 +64,7 @@ public abstract class ResourceItem : MonoBehaviour
         {
             if(Vector3.Distance(transform.localPosition, moveTarget.localPosition) < .025f)
             {
-                DestroyObject();
+                DestroyObject(true);
             }
         }
     }
@@ -98,10 +98,17 @@ public abstract class ResourceItem : MonoBehaviour
         moveSpeed = maxSpeed;
     }
 
-    public void DestroyObject()
+    public void DestroyObject(bool _playVfx)
     {
         //here may be destroying effect
         ItemDataBase.Instance.RemoveSpawnedItem(this);
+
+        if (_playVfx)
+        {
+            VfxSpawner.Instance.SpawnVfx(0, transform.position);
+            SoundsManager.Instance.PlayCustomSoundByID(3);
+        }
+
         Destroy(gameObject);
     }
 

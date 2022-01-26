@@ -22,14 +22,14 @@ public class FinishFactory : MonoBehaviour, IDropHandler
             if (resourceItem.GetResourceID() == itemIDForFactory)
             {
                 EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount());
-                resourceItem.DestroyObject();
+                resourceItem.DestroyObject(false);
 
                 SpawnMoneyPrefab();
                 SoundsManager.Instance.PlayCustomSoundByID(2);
             }
             else
             {
-                resourceItem.DestroyObject();
+                resourceItem.DestroyObject(false);
                 Debug.LogError("bad item type");
             }
 

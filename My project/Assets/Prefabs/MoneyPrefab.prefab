@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767086b5141dc3844a859ff9ced52cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyBounds: {x: 50, y: 100}
+  moneyBounds: {x: 75, y: 125}
 --- !u!1 &5137840172758446496
 GameObject:
   m_ObjectHideFlags: 0
