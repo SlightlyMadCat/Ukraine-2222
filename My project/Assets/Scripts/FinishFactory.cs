@@ -33,7 +33,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
                 Debug.LogError("bad item type");
             }
 
-            GameController.Instance.Recalculate();
+            //GameController.Instance.Recalculate();
         }
     }
 

@@ -98,10 +98,10 @@ public class GameController : MonoBehaviour
             {
                 if (VARIABLE.GetTerminalType() == _id)
                 {
-                    float _scale = 1;
+                    float _scale = 1.25f;
 
                     Debug.Log(VARIABLE.name);
-                    if (_val) _scale = 1.25f;
+                    if (_val) _scale = 1.5f;
                     VARIABLE.SetFactoryScale(new Vector3(_scale, _scale, _scale));
                     break;
                 }
@@ -114,10 +114,10 @@ public class GameController : MonoBehaviour
             {
                 if (VARIABLE.GetAttachedItemId() == _id)
                 {
-                    float _scale = 1;
+                    float _scale = 1.5f;
 
                     Debug.Log(VARIABLE.name);
-                    if (_val) _scale = 1.25f;
+                    if (_val) _scale = 1.75f;
                     VARIABLE.SetFactoryScale(new Vector3(_scale, _scale, _scale));
                     break;
                 }
