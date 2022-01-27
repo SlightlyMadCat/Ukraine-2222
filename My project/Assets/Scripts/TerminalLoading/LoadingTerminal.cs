@@ -76,7 +76,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     // try send load to next planet    
     IEnumerator DisableItemAndTryToSend(ItemInTerminalSample _terminalItem)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.01f);
         itemInTerminal.Add(_terminalItem);
         _terminalItem.GetResourceItem().SetStateGameobject(false);
     }
