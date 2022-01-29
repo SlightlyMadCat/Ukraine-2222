@@ -6,6 +6,17 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
+    #region Singleton
+
+    public static TimeController Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+    
     [SerializeField] private TextMeshProUGUI timerText;
     private float currentLevelSeconds;
     public int currentLevelTime = 0;
@@ -33,5 +44,11 @@ public class TimeController : MonoBehaviour
         var minutes = Math.Floor((_seconds - (hours * 3600)) / 60); // get minutes
         var seconds = _seconds - (hours * 3600) - (minutes * 60); //  get seconds
         return hours.ToString("00")+":"+minutes.ToString("00")+":"+seconds.ToString("00");
+    }
+
+    public float GetTimeScaleFactor()
+    {
+        Debug.Log(1 + (currentLevelTime / 150f));
+        return 1 + (currentLevelTime / 150f);
     }
 }

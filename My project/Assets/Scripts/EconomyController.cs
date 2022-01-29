@@ -38,7 +38,7 @@ public class EconomyController : MonoBehaviour
 
         public void ReduceAmount()
         {
-            currentAmount -= deltaPerTime;
+            currentAmount -= deltaPerTime * TimeController.Instance.GetTimeScaleFactor();
             if (currentAmount < 0) currentAmount = 0;
         }
 
