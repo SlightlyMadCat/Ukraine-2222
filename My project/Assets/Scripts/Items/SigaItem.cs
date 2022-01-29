@@ -17,5 +17,6 @@ public class SigaItem : ResourceItem
     private void OnDestroy()
     {
         BoostItem.Instance.RemoveSigaItem(this);
+        ItemDataBase.Instance.RemoveSpawnedItem(this);
     }
 }

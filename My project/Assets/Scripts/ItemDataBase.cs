@@ -7,7 +7,7 @@ public class ItemDataBase : MonoBehaviour
 {
     public static ItemDataBase Instance;
     [SerializeField] private List<ResourceItem> resourceItems = new List<ResourceItem>();
-    private List<ResourceItem> spawnedItems = new List<ResourceItem>();
+    [SerializeField] private List<ResourceItem> spawnedItems = new List<ResourceItem>();
     private List<MoneyPrefab> spawnedMoneyPrefabs = new List<MoneyPrefab>();
     
     private void Awake()

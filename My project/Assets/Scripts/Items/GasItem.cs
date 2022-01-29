@@ -17,5 +17,6 @@ public class GasItem : ResourceItem
     private void OnDestroy()
     {
         BoostItem.Instance.RemoveGasItem(this);
+        ItemDataBase.Instance.RemoveSpawnedItem(this);
     }
 }

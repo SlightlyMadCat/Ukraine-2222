@@ -52,7 +52,7 @@ public abstract class ResourceItem : MonoBehaviour
         if(!spaceSide.IsInsideArea(transform))  //check bounds
             DestroyObject(true);
 
-        if(dragDrop.IsTouched())
+        if(dragDrop.IsTouched() && !IsRightSide()) // work for left side
             OnFixedUpdate();
         if(dragDrop.IsTouched()) return;
         
@@ -197,15 +197,20 @@ public abstract class ResourceItem : MonoBehaviour
         
     }
 
-    public void AddOneBoost()
+    public void AddOneBoost(int _boost)
     {
-        boost++;
+        boost += _boost;
         UpdateBoostText();
     }
 
     public int GetBoost()
     {
         return boost;
+    }
+
+    public bool IsRightSide()
+    {
+        return side == SpaceSide.Side.right;
     }
 
     public abstract void OnAwake();

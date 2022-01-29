@@ -18,5 +18,6 @@ public class TualetkaItem : ResourceItem
     private void OnDestroy()
     {
         BoostItem.Instance.RemoveTualetkaItem(this);
+        ItemDataBase.Instance.RemoveSpawnedItem(this);
     }
 }

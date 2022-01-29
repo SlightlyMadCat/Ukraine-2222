@@ -78,11 +78,11 @@ public class BoostItem : MonoBehaviour
     private void MakeBoostGrechka(ResourceItem _item)
     {
         if(grechkaItems.Count  < 2) return;
-        foreach (var grechka in grechkaItems)
+        foreach (var grechka in grechkaItems )
         {
-            if (grechka != _item)
+            if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost();
+                _item.AddOneBoost(grechka.GetBoost());
                 Destroy(grechka.gameObject);
             }
         }
@@ -93,9 +93,9 @@ public class BoostItem : MonoBehaviour
         if(gasItems.Count  < 2) return;
         foreach (var grechka in gasItems)
         {
-            if (grechka != _item)
+            if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost();
+                _item.AddOneBoost(grechka.GetBoost());
                 Destroy(grechka.gameObject);
             }
         }
@@ -106,9 +106,9 @@ public class BoostItem : MonoBehaviour
         if(sigaItems.Count  < 2) return;
         foreach (var grechka in sigaItems)
         {
-            if (grechka != _item)
+            if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost();
+                _item.AddOneBoost(grechka.GetBoost());
                 Destroy(grechka.gameObject);
             }
         }
@@ -119,9 +119,9 @@ public class BoostItem : MonoBehaviour
         if(tualetkaItems.Count  < 2) return;
         foreach (var grechka in tualetkaItems)
         {
-            if (grechka != _item)
+            if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost();
+                _item.AddOneBoost(grechka.GetBoost());
                 Destroy(grechka.gameObject);
             }
         }
