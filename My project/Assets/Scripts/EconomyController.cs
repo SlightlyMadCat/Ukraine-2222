@@ -55,7 +55,7 @@ public class EconomyController : MonoBehaviour
     }
     [SerializeField] private List<ResourceSample> resourceSamples = new List<ResourceSample>();
     [SerializeField] private TextMeshProUGUI moneyText;
-    public GameObject moneyPrefab;
+    public MoneyPrefab moneyPrefab;
     
     private void Start()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,10 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private Image image;
 
     [HideInInspector] public SpaceSide.Side side;
+
+    [Header("boost")]
+    [SerializeField] private int boost = 1;
+    [SerializeField] private TextMeshProUGUI boostText;
     
     private void Awake()
     {
@@ -37,14 +42,20 @@ public abstract class ResourceItem : MonoBehaviour
         myRect = gameObject.GetComponent<RectTransform>();
         
         ItemDataBase.Instance.AddSpawnedItem(this);
+
+        UpdateBoostText();
+        OnAwake();
     }
 
     private void FixedUpdate()
     {
         if(!spaceSide.IsInsideArea(transform))  //check bounds
             DestroyObject(true);
-     
+
+        if(dragDrop.IsTouched())
+            OnFixedUpdate();
         if(dragDrop.IsTouched()) return;
+        
         if(moveTarget == null) return;
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, moveTarget.localPosition, moveSpeed);
 
@@ -70,6 +81,8 @@ public abstract class ResourceItem : MonoBehaviour
             }
         }
     }
+
+    public abstract void OnFixedUpdate();
 
     public void Init(Vector3 _startPos, Transform _defaultPlanet, SpaceSide _spaceSide)
     {
@@ -172,4 +185,28 @@ public abstract class ResourceItem : MonoBehaviour
     {
         image.raycastTarget = _val;
     }
+
+    public void UpdateBoostText()
+    {
+        boostText.text = "x" + boost;
+    }
+
+    public void UpdateBoostInt(int _boost)
+    {
+        boost = _boost;
+        
+    }
+
+    public void AddOneBoost()
+    {
+        boost++;
+        UpdateBoostText();
+    }
+
+    public int GetBoost()
+    {
+        return boost;
+    }
+
+    public abstract void OnAwake();
 }

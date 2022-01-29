@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 5451211629719972597, guid: e35069c5b6fa5744a92b374c4b8b9f8e, type: 3}
+      objectReference: {fileID: 7335940136786804952, guid: e35069c5b6fa5744a92b374c4b8b9f8e, type: 3}
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: spawnParent
       value: 
@@ -2763,7 +2763,7 @@ PrefabInstance:
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 4674884994704406328, guid: 52586866b4a5e7047b3c9bd804adbc2d, type: 3}
+      objectReference: {fileID: 7873115038374447772, guid: 52586866b4a5e7047b3c9bd804adbc2d, type: 3}
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: spawnParent
       value: 
@@ -3229,7 +3229,7 @@ PrefabInstance:
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 1649060916387346157, guid: d883679ed1bc25a4bb5940faa9ddc678, type: 3}
+      objectReference: {fileID: 5799256272420016422, guid: d883679ed1bc25a4bb5940faa9ddc678, type: 3}
     - target: {fileID: 8837616942691154582, guid: c46444143ee7c874790f75fe9ae657b4, type: 3}
       propertyPath: spawnParent
       value: 
@@ -4238,7 +4238,7 @@ MonoBehaviour:
     deltaPerTime: 0.0005
     amountSlider: {fileID: 27552756}
   moneyText: {fileID: 286373696}
-  moneyPrefab: {fileID: 5137840172662209349, guid: 89a8f2a3b860cfc4e88bbb031de399a5, type: 3}
+  moneyPrefab: {fileID: 5137840172662209351, guid: 89a8f2a3b860cfc4e88bbb031de399a5, type: 3}
 --- !u!1 &1572205275
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,6 +5213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1947815610}
   - component: {fileID: 1947815611}
+  - component: {fileID: 1947815612}
   m_Layer: 0
   m_Name: ITEM DATABASE
   m_TagString: Untagged
@@ -5247,10 +5248,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceItems:
-  - {fileID: 4674884994704406328, guid: 52586866b4a5e7047b3c9bd804adbc2d, type: 3}
+  - {fileID: 7873115038374447772, guid: 52586866b4a5e7047b3c9bd804adbc2d, type: 3}
   - {fileID: 4674884994704406328, guid: 2f60d9617af202f47be5e744c74e3ecf, type: 3}
-  - {fileID: 5451211629719972597, guid: e35069c5b6fa5744a92b374c4b8b9f8e, type: 3}
-  - {fileID: 1649060916387346157, guid: d883679ed1bc25a4bb5940faa9ddc678, type: 3}
+  - {fileID: 7335940136786804952, guid: e35069c5b6fa5744a92b374c4b8b9f8e, type: 3}
+  - {fileID: 5799256272420016422, guid: d883679ed1bc25a4bb5940faa9ddc678, type: 3}
+--- !u!114 &1947815612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947815609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0c02ee9ecaef448b40e20c0c9bb99f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grechkaItems: []
+  gasItems: []
+  sigaItems: []
+  tualetkaItems: []
 --- !u!114 &2012990363 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9033662496778930086, guid: d02c22b460bd83b4093565444bebc300, type: 3}

@@ -70,4 +70,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         GameController.Instance.ChangeAttachedFinishFactoryScale(false, item.GetResourceID(), item.side);
         ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
     }
+
+  
 }
