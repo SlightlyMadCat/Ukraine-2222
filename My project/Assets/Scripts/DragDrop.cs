@@ -56,8 +56,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isTouched = false;
         OnDeselection();
+        isTouched = false;
     }
 
     private void OnDestroy()
