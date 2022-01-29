@@ -41,6 +41,8 @@ public abstract class ResourceItem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
+        
         if(!spaceSide.IsInsideArea(transform))  //check bounds
             DestroyObject(true);
      

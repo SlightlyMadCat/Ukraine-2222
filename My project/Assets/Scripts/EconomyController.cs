@@ -64,6 +64,8 @@ public class EconomyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
+        
         foreach (var VARIABLE in resourceSamples)
         {
             VARIABLE.ReduceAmount();

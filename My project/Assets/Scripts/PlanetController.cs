@@ -13,6 +13,7 @@ public class PlanetController : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
         transform.localEulerAngles += new Vector3(0, 0, planetRotationSpeed);
     }
 }

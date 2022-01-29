@@ -42,7 +42,7 @@ public class SceneChangingManager : MonoBehaviour
     {
         Cursor.visible = true;
         SelectedSceneInfo.selectedSceneName = _name;
-        SceneManager.LoadScene(_name);
+        SceneManager.LoadScene(loadingSceneName);
     }
 
     public void AppQuit()
