@@ -51,6 +51,9 @@ public class EconomyController : MonoBehaviour
         public void UpdateUI()
         {
             amountSlider.value = currentAmount;
+            
+            if(amountSlider.value <= 0)
+                UiController.Instance.ShowGameOverScreen();
         }
     }
     [SerializeField] private List<ResourceSample> resourceSamples = new List<ResourceSample>();

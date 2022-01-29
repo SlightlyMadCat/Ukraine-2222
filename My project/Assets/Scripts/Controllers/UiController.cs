@@ -12,6 +12,7 @@ public class UiController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        startView.SetActive(true);
     }
 
     #endregion
@@ -42,5 +43,10 @@ public class UiController : MonoBehaviour
     public void HideEscView()
     {
         escView.SetActive(false);
+    }
+
+    public void ShowGameOverScreen()
+    {
+        gameOverView.SetActive(true);
     }
 }
