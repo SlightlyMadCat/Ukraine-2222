@@ -21,7 +21,7 @@ public class FinishFactory : MonoBehaviour, IDropHandler
             var resourceItem = eventData.pointerDrag.GetComponent<ResourceItem>();
             if (resourceItem.GetResourceID() == itemIDForFactory)
             {
-                EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount());
+                EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount() * resourceItem.GetBoost());
                 resourceItem.DestroyObject(false);
 
                 SpawnMoneyPrefab(resourceItem.GetBoost());
