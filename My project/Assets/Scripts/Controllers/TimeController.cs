@@ -48,7 +48,7 @@ public class TimeController : MonoBehaviour
 
     public float GetTimeScaleFactor()
     {
-        Debug.Log(1 + (currentLevelTime / 150f));
+        //Debug.Log(1 + (currentLevelTime / 150f));
         return 1 + (currentLevelTime / 150f);
     }
 }
