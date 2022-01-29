@@ -67,6 +67,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private void OnDeselection()
     {
+        if(!isTouched) return;
         GameController.Instance.ChangeAttachedFinishFactoryScale(false, item.GetResourceID(), item.side);
         ItemDataBase.Instance.SetDynamicItemsRaycastState(true, item);
     }
