@@ -64,7 +64,7 @@ public class SceneChangingManager : MonoBehaviour
 
     IEnumerator WaitToLoadMainMenu()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(10f);
         LoadScene();
     }
 
