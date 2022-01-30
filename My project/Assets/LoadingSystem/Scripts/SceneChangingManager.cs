@@ -22,13 +22,15 @@ public class SceneChangingManager : MonoBehaviour
 
     [SerializeField] private bool showFPS = false;
 
+    [SerializeField] private GameObject dontDestroyObj;
+    
     #region Singleton
 
     public static SceneChangingManager Instance;
     private void Awake() => Instance = this;
 
     #endregion
-    
+
     //used to load scene by the default settings
     public void LoadScene()
     {
@@ -42,7 +44,7 @@ public class SceneChangingManager : MonoBehaviour
     {
         Cursor.visible = true;
         SelectedSceneInfo.selectedSceneName = _name;
-        SceneManager.LoadScene(_name);
+        SceneManager.LoadScene(loadingSceneName);
     }
 
     public void AppQuit()
@@ -59,6 +61,7 @@ public class SceneChangingManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == introSceneName)
         {
             StartCoroutine(WaitToLoadMainMenu());
+            DontDestroyOnLoad(dontDestroyObj);
         }
     }
 

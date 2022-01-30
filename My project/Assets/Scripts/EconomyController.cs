@@ -38,7 +38,7 @@ public class EconomyController : MonoBehaviour
 
         public void ReduceAmount()
         {
-            currentAmount -= deltaPerTime;
+            currentAmount -= deltaPerTime * TimeController.Instance.GetTimeScaleFactor();
             if (currentAmount < 0) currentAmount = 0;
         }
 
@@ -51,6 +51,9 @@ public class EconomyController : MonoBehaviour
         public void UpdateUI()
         {
             amountSlider.value = currentAmount;
+            
+            if(amountSlider.value <= 0)
+                UiController.Instance.ShowGameOverScreen();
         }
     }
     [SerializeField] private List<ResourceSample> resourceSamples = new List<ResourceSample>();
@@ -64,6 +67,8 @@ public class EconomyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
+        
         foreach (var VARIABLE in resourceSamples)
         {
             VARIABLE.ReduceAmount();

@@ -85,6 +85,8 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
     private float currentCreationTime = 0;
     private void FixedUpdate()
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
+        
         if (itemInTerminal.Count == 0) // empty item list
         {
             loadingBar.localScale = new Vector3(0, loadingBar.localScale.y) ;
