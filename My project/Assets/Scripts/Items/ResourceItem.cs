@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +30,15 @@ public abstract class ResourceItem : MonoBehaviour
     [SerializeField] private Image image;
 
     [HideInInspector] public SpaceSide.Side side;
-    
+
+    [Header("boost")]
+    [SerializeField] private int boost = 1;
+    [SerializeField] private TextMeshProUGUI boostText;
+
+    [Header("boost distance and speed to target in privat")]
+    [SerializeField] private ResourceItem boostTarget;
+     private float boostDistance = 1f;
+    private float boostSpeedToTarget = 4f;
     private void Awake()
     {
         maxSpeed = moveSpeed;
@@ -37,6 +46,9 @@ public abstract class ResourceItem : MonoBehaviour
         myRect = gameObject.GetComponent<RectTransform>();
         
         ItemDataBase.Instance.AddSpawnedItem(this);
+
+        UpdateBoostText();
+        OnAwake();
     }
 
     private void FixedUpdate()
@@ -45,33 +57,52 @@ public abstract class ResourceItem : MonoBehaviour
         
         if(!spaceSide.IsInsideArea(transform))  //check bounds
             DestroyObject(true);
-     
-        if(dragDrop.IsTouched()) return;
-        if(moveTarget == null) return;
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, moveTarget.localPosition, moveSpeed);
 
-        if (moveTarget != defaultPlanet)    //speed reducing if item is moving from planet towards the orbit
-        {
-            moveSpeed = moveSpeed - (moveSpeed * .02081f);
-        }
-        else //speed increasing if item is moving from orbit towards the planet
-        {
-            moveSpeed = moveSpeed + (moveSpeed * .02581f);
-        }
+        if(dragDrop.IsTouched() && !IsRightSide()) // work for left side
+            OnFixedUpdate();
 
-        if (moveSpeed < minimalSpeed)   //if target has low speed on the orbit - move item to the planet
+        if (boostTarget != null)
         {
-            moveTarget = defaultPlanet;
-        }
-
-        if (moveTarget == defaultPlanet)    //check to destroy target
-        {
-            if(Vector3.Distance(transform.localPosition, moveTarget.localPosition) < .025f)
+            transform.position = Vector3.Lerp(   transform.position ,boostTarget.transform.position, Time.fixedDeltaTime * boostSpeedToTarget);
+            print(Vector3.Distance(transform.position, boostTarget.transform.position));
+            if (Vector3.Distance(transform.position, boostTarget.transform.position) < boostDistance)
             {
-                DestroyObject(true);
+                boostTarget.AddOneBoost(GetBoost());
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if(dragDrop.IsTouched()) return;
+        
+            if(moveTarget == null) return;
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, moveTarget.localPosition, moveSpeed);
+
+            if (moveTarget != defaultPlanet)    //speed reducing if item is moving from planet towards the orbit
+            {
+                moveSpeed = moveSpeed - (moveSpeed * .02081f);
+            }
+            else //speed increasing if item is moving from orbit towards the planet
+            {
+                moveSpeed = moveSpeed + (moveSpeed * .02581f);
+            }
+
+            if (moveSpeed < minimalSpeed)   //if target has low speed on the orbit - move item to the planet
+            {
+                moveTarget = defaultPlanet;
+            }
+
+            if (moveTarget == defaultPlanet)    //check to destroy target
+            {
+                if(Vector3.Distance(transform.localPosition, moveTarget.localPosition) < .025f)
+                {
+                    DestroyObject(true);
+                }
             }
         }
     }
+
+    public abstract void OnFixedUpdate();
 
     public void Init(Vector3 _startPos, Transform _defaultPlanet, SpaceSide _spaceSide)
     {
@@ -173,5 +204,39 @@ public abstract class ResourceItem : MonoBehaviour
     public void SetRaycastingState(bool _val)
     {
         image.raycastTarget = _val;
+    }
+
+    public void UpdateBoostText()
+    {
+        boostText.text = "x" + boost;
+    }
+
+    public void UpdateBoostInt(int _boost)
+    {
+        boost = _boost;
+        
+    }
+
+    public void AddOneBoost(int _boost)
+    {
+        boost += _boost;
+        UpdateBoostText();
+    }
+
+    public int GetBoost()
+    {
+        return boost;
+    }
+
+    public bool IsRightSide()
+    {
+        return side == SpaceSide.Side.right;
+    }
+
+    public abstract void OnAwake();
+
+    public void SetBoostTarget(ResourceItem target)
+    {
+        boostTarget = target;
     }
 }

@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrechkaItem : ResourceItem
+public class TualetkaItem : ResourceItem
 {
     public override void OnFixedUpdate()
     {
@@ -11,12 +12,12 @@ public class GrechkaItem : ResourceItem
 
     public override void OnAwake()
     {
-        BoostItem.Instance.AddGrechkaItem(this);
+        BoostItem.Instance.AddTualetkaItem(this);
     }
-    
+
     private void OnDestroy()
     {
-        BoostItem.Instance.RemoveGrechkaItem(this);
+        BoostItem.Instance.RemoveTualetkaItem(this);
         ItemDataBase.Instance.RemoveSpawnedItem(this);
     }
 }

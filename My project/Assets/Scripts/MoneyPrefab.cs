@@ -9,12 +9,13 @@ using Random = UnityEngine.Random;
 public class MoneyPrefab : MonoBehaviour
 {
     [SerializeField] private Vector2 moneyBounds;
-    private float money;
+    private int money;
     private Image image;
+    private int boost = 1;
     
     private void Awake()
     {
-        money = Random.Range(moneyBounds.x, moneyBounds.y);
+       
         image = GetComponent<Image>();
         
         ItemDataBase.Instance.AddMoneyPref(this);
@@ -26,6 +27,12 @@ public class MoneyPrefab : MonoBehaviour
         
         ItemDataBase.Instance.RemoveMoneyPrefab(this);
         Destroy(gameObject);
+    }
+
+    public void AddBoost(int _boost)
+    {
+        boost = _boost;
+        money = Random.Range((int)moneyBounds.x, (int)moneyBounds.y) * boost;
     }
     
     public void SetRaycastingState(bool _val)

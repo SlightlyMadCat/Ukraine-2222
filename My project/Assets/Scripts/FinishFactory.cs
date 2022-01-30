@@ -21,10 +21,10 @@ public class FinishFactory : MonoBehaviour, IDropHandler
             var resourceItem = eventData.pointerDrag.GetComponent<ResourceItem>();
             if (resourceItem.GetResourceID() == itemIDForFactory)
             {
-                EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount());
+                EconomyController.Instance.AddResourceAmount(resourceItem.GetResourceID(), resourceItem.GetResAmount() * resourceItem.GetBoost());
                 resourceItem.DestroyObject(false);
 
-                SpawnMoneyPrefab();
+                SpawnMoneyPrefab(resourceItem.GetBoost());
                 SoundsManager.Instance.PlayCustomSoundByID(2);
             }
             else
@@ -37,16 +37,17 @@ public class FinishFactory : MonoBehaviour, IDropHandler
         }
     }
 
-    private void SpawnMoneyPrefab()
+    private void SpawnMoneyPrefab(int boost)
     {
-        GameObject _money = Instantiate(EconomyController.Instance.moneyPrefab, transform.parent);
-
+        var _money = Instantiate(EconomyController.Instance.moneyPrefab, transform.parent);
+        _money.AddBoost(boost);
+        
         Vector3 _randomOffset = new Vector2();
         _randomOffset.x = Random.Range(0, spawnRange);
         _randomOffset.y = Random.Range(0, spawnRange);
 
-        _money.transform.localPosition = transform.localPosition + _randomOffset;
-        _money.transform.SetParent(baseParent);
+        _money.gameObject.transform.localPosition = transform.localPosition + _randomOffset;
+        _money.gameObject.transform.SetParent(baseParent);
         Debug.LogError("money++");        
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrechkaItem : ResourceItem
+public class GasItem : ResourceItem
 {
     public override void OnFixedUpdate()
     {
@@ -11,12 +11,12 @@ public class GrechkaItem : ResourceItem
 
     public override void OnAwake()
     {
-        BoostItem.Instance.AddGrechkaItem(this);
+        BoostItem.Instance.AddGasItem(this);
     }
     
     private void OnDestroy()
     {
-        BoostItem.Instance.RemoveGrechkaItem(this);
+        BoostItem.Instance.RemoveGasItem(this);
         ItemDataBase.Instance.RemoveSpawnedItem(this);
     }
 }
