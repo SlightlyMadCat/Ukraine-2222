@@ -103,6 +103,7 @@ MonoBehaviour:
   side: 0
   boost: 1
   boostText: {fileID: 645463584851184091}
+  boostTarget: {fileID: 0}
 --- !u!114 &1843062154909614838
 MonoBehaviour:
   m_ObjectHideFlags: 0

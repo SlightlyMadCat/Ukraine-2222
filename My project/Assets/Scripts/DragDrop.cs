@@ -39,6 +39,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
+        if(UiController.Instance.SomeViewIsActive()) return;
         rectTr.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 

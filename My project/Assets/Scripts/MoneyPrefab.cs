@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class MoneyPrefab : MonoBehaviour
 {
     [SerializeField] private Vector2 moneyBounds;
-    private int money;
+    private float money;
     private Image image;
     private int boost = 1;
     
@@ -32,7 +32,7 @@ public class MoneyPrefab : MonoBehaviour
     public void AddBoost(int _boost)
     {
         boost = _boost;
-        money = Random.Range((int)moneyBounds.x, (int)moneyBounds.y) * boost;
+        money = Random.Range(/*(int)*/moneyBounds.x, /*(int)*/moneyBounds.y) * boost;
     }
     
     public void SetRaycastingState(bool _val)

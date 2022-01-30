@@ -20,7 +20,9 @@ public class SoundsManager : MonoBehaviour
         [SerializeField] private string name;     //action name
         [SerializeField] private AudioClip clip;  //custom clip
         [SerializeField] private AudioMixerGroup desireMixer;  //desire mixer group 
-
+        [SerializeField] private float volume = 1;
+        [SerializeField] private float pitch = 1;
+        
         public AudioClip GetClip()
         {
             return clip;
@@ -42,6 +44,21 @@ public class SoundsManager : MonoBehaviour
         {
             return name;
         }
+
+        public float GetDuration()
+        {
+            return clip.length + clip.length / 2.3f;
+        }
+
+        public float GetVolume()
+        {
+            return volume;
+        }
+
+        public float GetPitch()
+        {
+            return pitch;
+        }
     }
     [Header("All custom sounds list")]
     [SerializeField] private List<CustomSoundSample> customSoundSamples = new List<CustomSoundSample>();
@@ -57,26 +74,27 @@ public class SoundsManager : MonoBehaviour
     //may call from ui
     public void PlayCustomSoundByID(int _id)
     {
-        SpawnNewCustomSound(customSoundSamples[_id].GetClip(), customSoundSamples[_id].GetMixer());
+        SpawnNewCustomSound(customSoundSamples[_id]);
     }
 
     //spawn new sound with custom mixer
-    private void SpawnNewCustomSound(AudioClip _clip, AudioMixerGroup _mixer)
+    private void SpawnNewCustomSound(CustomSoundSample _sample)
     {
         AudioSource _newSound = gameObject.AddComponent<AudioSource>();
-        _newSound.clip = _clip;
+        _newSound.clip = _sample.GetClip();
 
         //set new sound values as in example
-        _newSound.volume = sampleSource.volume;
+        _newSound.volume = _sample.GetVolume();
         _newSound.outputAudioMixerGroup = sampleSource.outputAudioMixerGroup;
         _newSound.spatialBlend = sampleSource.spatialBlend;
         _newSound.spread = sampleSource.spread;
         _newSound.rolloffMode = sampleSource.rolloffMode;
-        _newSound.outputAudioMixerGroup = _mixer;
-
+        _newSound.outputAudioMixerGroup = _sample.GetMixer();
+        _newSound.pitch = _sample.GetPitch();
+        
         _newSound.Play();
 
-        StartCoroutine(WaitForDestroySource(_clip.length, _newSound));
+        StartCoroutine(WaitForDestroySource(_sample.GetDuration(), _newSound));
     }
 
     // remove source component after sound is over
@@ -112,5 +130,10 @@ public class SoundsManager : MonoBehaviour
     public bool SoundsListIsNotEmpty()
     {
         return customSoundSamples.Count > 0;
+    }
+
+    public float GetSoundLengthById(int _id)
+    {
+        return customSoundSamples[_id].GetDuration();
     }
 }
