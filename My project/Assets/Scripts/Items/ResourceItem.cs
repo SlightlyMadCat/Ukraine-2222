@@ -62,10 +62,9 @@ public abstract class ResourceItem : MonoBehaviour
         if(dragDrop.IsTouched() && !IsRightSide()) // work for left side
             OnFixedUpdate();
 
-        if (boostTarget != null)
+        if (boostTarget != null && !IsRightSide())
         {
             transform.position = Vector3.Lerp(   transform.position ,boostTarget.transform.position, Time.fixedDeltaTime * boostSpeedToTarget);
-            print(Vector3.Distance(transform.position, boostTarget.transform.position));
             if (Vector3.Distance(transform.position, boostTarget.transform.position) < boostDistance)
             {
                 boostTarget.AddOneBoost(GetBoost());
