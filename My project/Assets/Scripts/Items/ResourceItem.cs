@@ -37,8 +37,9 @@ public abstract class ResourceItem : MonoBehaviour
 
     [Header("boost distance and speed to target in privat")]
     [SerializeField] private ResourceItem boostTarget;
-     private float boostDistance = 1f;
-    private float boostSpeedToTarget = 4f;
+    private float boostDistance = 1f;
+    private float boostSpeedToTarget = 2.55f;
+    
     private void Awake()
     {
         maxSpeed = moveSpeed;
