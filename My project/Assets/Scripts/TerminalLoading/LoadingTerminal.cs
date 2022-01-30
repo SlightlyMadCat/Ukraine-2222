@@ -57,6 +57,7 @@ public class LoadingTerminal : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag != null)
         {
             var resourceItem = eventData.pointerDrag.GetComponent<ResourceItem>();
+            BoostItem.Instance.TryMakeBoost(resourceItem, true);
             AddNewItem(resourceItem);
         }
     }

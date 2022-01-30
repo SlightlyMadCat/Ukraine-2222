@@ -7,7 +7,7 @@ public class TualetkaItem : ResourceItem
 {
     public override void OnFixedUpdate()
     {
-        BoostItem.Instance.TryMakeBoost(this);
+        BoostItem.Instance.TryMakeBoost(this, false);
     }
 
     public override void OnAwake()

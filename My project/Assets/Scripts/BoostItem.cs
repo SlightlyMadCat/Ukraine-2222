@@ -56,73 +56,81 @@ public class BoostItem : MonoBehaviour
         tualetkaItems.Remove(_item);
     }
 
-    public void TryMakeBoost(ResourceItem _itme)
+    public void TryMakeBoost(ResourceItem _itme, bool _val)
     {
         switch (_itme.GetResourceID())
         {
             case 0:
-                MakeBoostGrechka(_itme);
+                MakeBoostGrechka(_itme, _val);
                 break;
             case 1:
-                MakeBoostGaz(_itme);
+                MakeBoostGaz(_itme, _val);
                 break;
             case 2:
-                MakeBoostSiga(_itme);
+                MakeBoostSiga(_itme, _val);
                 break;
             case 3:
-                MakeBoostTualetka(_itme);
+                MakeBoostTualetka(_itme, _val);
                 break;
         }
     }
 
-    private void MakeBoostGrechka(ResourceItem _item)
+    private void MakeBoostGrechka(ResourceItem _item, bool _val)
     {
         if(grechkaItems.Count  < 2) return;
         foreach (var grechka in grechkaItems )
         {
             if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost(grechka.GetBoost());
-                Destroy(grechka.gameObject);
+                if(_val)
+                    grechka.SetBoostTarget(null);
+                else
+                    grechka.SetBoostTarget(_item);
             }
         }
     } 
     
-    private void MakeBoostGaz(ResourceItem _item)
+    private void MakeBoostGaz(ResourceItem _item, bool _val)
     {
         if(gasItems.Count  < 2) return;
         foreach (var grechka in gasItems)
         {
             if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost(grechka.GetBoost());
-                Destroy(grechka.gameObject);
+                if(_val)
+                    grechka.SetBoostTarget(null);
+                else
+                    grechka.SetBoostTarget(_item);
             }
         }
     } 
     
-    private void MakeBoostSiga(ResourceItem _item)
+    private void MakeBoostSiga(ResourceItem _item, bool _val)
     {
         if(sigaItems.Count  < 2) return;
         foreach (var grechka in sigaItems)
         {
             if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost(grechka.GetBoost());
-                Destroy(grechka.gameObject);
+                if(_val)
+                    grechka.SetBoostTarget(null);
+                else
+                    grechka.SetBoostTarget(_item);
             }
         }
     } 
     
-    private void MakeBoostTualetka(ResourceItem _item)
+    private void MakeBoostTualetka(ResourceItem _item, bool _val)
     {
         if(tualetkaItems.Count  < 2) return;
         foreach (var grechka in tualetkaItems)
         {
             if (grechka != _item && !grechka.IsRightSide())
             {
-                _item.AddOneBoost(grechka.GetBoost());
-                Destroy(grechka.gameObject);
+                if(_val)
+                    grechka.SetBoostTarget(null);
+                else
+                    grechka.SetBoostTarget(_item);
             }
         }
     } 
